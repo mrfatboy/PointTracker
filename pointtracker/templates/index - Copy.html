@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <title>PointTracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/static/css/pointtracker.css" rel="stylesheet">
+
+    <link href="/static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+
+##    <script src="/pointtracker/static/pointtracker.js" type="text/javascript"></script>
+
+##    <link href="${request.static_url('pointtracker:static/bootstrap/css/bootstrap.css')}" rel="stylesheet" type="text/css">
+##    <link href="${request.static_url('pointtracker:static/bootstrap/css/bootstrap-responsive.css')}" rel="stylesheet">
+
+##    <link href="${request.static_url('pointtracker:static/bootstrap/css/bootstrap-datetimepicker.min.css')}" rel="stylesheet" type="text/css" media="screen">
+##    <link rel="shortcut icon" href="${request.static_url('pointtracker:static/favicon.ico')}">
+
+##    <script src="${request.static_url('pointtracker:static/bootstrap/js/jquery_1.9.1/jquery.js')}"></script>
+##    <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap.js')}"></script>
+##    <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap-datetimepicker.min.js')}" type="text/javascript"></script>
+##    <script src="${request.static_url('pointtracker:static/bootstrap/js/pointtracker.js')}" type="text/javascript"></script>
+
+
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/jquery_1.9.1/jquery.js')}"></script>
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap.js')}"></script>
+##
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap-datetimepicker.min.js')}" type="text/javascript"></script>
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/pointtracker.js')}" type="text/javascript"></script>
+
+
+      ##    <link rel="stylesheet" href="${request.static_url('pointtracker:static/bootstrap/css/select2.css')}">
+
+##    <link href="${request.static_url('pointtracker:static/bootstrap/js/google-code-prettify/prettify.css')}" rel="stylesheet">
+##    <link href="${request.static_url('pointtracker:static/bootstrap/css/docs.css')}" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+##    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${request.static_url('pointtracker:static/bootstrap/ico/apple-touch-icon-144-precomposed.png')}">
+##    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${request.static_url('pointtracker:static/bootstrap/ico/apple-touch-icon-114-precomposed.png')}">
+##      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${request.static_url('pointtracker:static/bootstrap/ico/apple-touch-icon-72-precomposed.png')}">
+##                    <link rel="apple-touch-icon-precomposed" href="${request.static_url('pointtracker:static/bootstrap/ico/apple-touch-icon-57-precomposed.png')}">
+##                                   <link rel="shortcut icon" href="${request.static_url('pointtracker:static/favicon.ico')}">
+
+
+
+
+
+  </head>
+
+
+
+##  <body>
+  <body onload="Display_PointTracker_Account()">
+  <style type="text/css">
+      body { background: #DFF3FC; }
+  </style>
+
+##            <img src="${request.static_url('pointtracker:static/pointtracker_header.png')}" alt="airplane logo" height="300" width="1280">
+           <div align = "center">
+                <img style="text-align:center"    src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="300" width="1280">
+           </div>
+
+##            <a href="delete.cfm" data-confirm="Are you sure you want to delete?">Delete</a>
+
+
+                    <div class="well well-small">
+##                        <div style="text-align: right">Welcome, Michael</div>
+##                        <ul class="nav nav-pills">
+##                            <li class="active"><a href="#">Home</a></li>
+##                            <li><a href="#Add_a_person" data-toggle="modal">Add a person</a></li>
+##                            <li><a href="#Add_a_program" data-toggle="modal">Add a program</a></li>
+##                            <li><a href="#Delete_a_person" data-toggle="modal">Delete a person</a></li>
+##                            <li><a href="#Update_Pointtracker_Accounts" data-toggle="modal">Update All Accounts</a></li>
+##                            <li><a href="#Display_Pointtracker_Account">Sign Out</a></li>
+##                            <div style="text-align: left">Welcome, Michael</div>
+##                            <div style="text-align: right">Sign Out</div>
+##                            <div id="textbox">
+##                                <p class="float:left">Welcome, Michael</p>
+##                                <p class="float:right">Sign Out</p>
+                        <p style="float: left; width: 32&#37;; text-align: left;">Welcome Michael,</p>
+##                        <p style="float: left; width: 32%; text-align: center;">Centre text</p>
+                        <p style="float: left; width: 66%; text-align: right;">Sign Out</p>
+##                            </div>
+##                        </ul>
+                    </div>
+
+
+
+
+##Update PointTracker Account Button
+
+            <div style="text-align: center">
+                <a href="#Update_PointTracker_Account" onclick = "Update_PointTracker_Account()" class="btn btn-large btn-primary" data-toggle="modal">Update PointTracker Account</a>
+##                <a href="#" id="Test_Button"  data-pa="4" data-sa="0" class="btn btn-large btn-primary" >Test Button</a>
+##                <a href="#" id="Test_Button2"  data-pa="4" data-sa="0" class="btn btn-large btn-primary" >Test Button2</a>
+
+##                    <div class="btn-group" style="text-align: left ">
+##                          <button class="btn btn-large btn-info">Michael</button>
+##                          <button class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+##                              <span class="caret"></span>
+##                          </button>
+##                          <ul class="dropdown-menu">
+##                              <li><a href="#" onclick = "Add_Reward_Program(this)" id="manage1" >Add Reward Program</a></li>
+##                              <li><a href="#" onclick = "Delete_Sub_Account(this)" id="manage2" >Delete this Sub Account</a></li>
+##                          </ul>
+##                    </div>
+
+                <br>
+                <br>
+##                <a href="#Add_Sub_Account" onclick = "Add_Sub_Account()" class="btn btn btn-success" data-toggle="modal">Add PointTracker Sub Account</a>
+##                <a href="#Add_Sub_Account_Modal" data-toggle="modal" class="btn btn btn-success">Add PointTracker Sub Account</a>
+                <a href="#" onclick = "Display_PointTracker_Account()" class="btn btn btn-success">Direct Display</a>
+                <a href="#Add_Sub_Account" onclick = "Add_Sub_Account()" class="btn btn btn-success">Add PointTracker Sub Account</a>
+            </div>
+
+
+
+##//  Javascript Inserts
+##
+## Dynamically added table gets insert at this tag
+
+                              <br>
+                              <br>
+                              <div id='sub_account_table'></div>
+
+
+
+
+
+
+##Update PointTracker Account Modal
+##
+##
+            <div class="modal hide fade" id="Update_PointTracker_Account" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-header" align='center'>
+                    <h3>Updating PointTracker Account</h3>
+                    <h5>This includes all Reward Programs for all Sub Accounts</h5>
+                </div>
+
+                <div class="modal-body" >
+
+                    <div style="height:300px;width:500px ;overflow:auto;">
+                        <div class="row-fluid">
+                            <div class="span6 offset4" id='Update_PointTracker_Account_List_Tag'></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+
+
+
+##Add_Sub_Account Modal
+##
+##
+  <div class="modal hide fade" id="Add_Sub_Account_Modal" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+      <div class="modal-header" align='center'>
+          <h3>Add a Sub Account</h3>
+      </div>
+
+      <div class="modal-body" style="text-align: center">
+          <p>Please enter the name of the new Sub Account</p>
+          <br>
+          ##                  <input type="text"  id="Sub_Account_Name_Modal"  title="Input a Sub Account Name" >
+                            <input type="text" placeholder="Type a name" onclick='this.value = ""' id="Sub_Account_Name_Modal"  title="Input a Sub Account Name" >
+      </div>
+
+      <div class="modal-footer">
+          <button  id="SA_Confirm_Modal_Button" class="btn btn-primary"  data-dismiss="modal"  aria-hidden="true">Add</button>
+          ##                  <button class="btn btn-primary"  data-dismiss="modal"  aria-hidden="true">Add</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+  </div>
+
+
+
+
+##Delete_Sub_Account Modal
+##
+##
+  <div class="modal hide fade" id="Delete_Sub_Account_Modal" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+      <div class="modal-header" align='center'>
+          <h3>Delete Sub Account</h3>
+      </div>
+
+      <div class="modal-body" style="text-align: center">
+          <p>Are you sure?</p>
+          <p>This will delete the sub account and all reward pograms associated with it.</p>
+      </div>
+
+      <div class="modal-footer">
+          <button  id="SA_Delete_Modal_Button" class="btn btn-danger"  data-dismiss="modal"  aria-hidden="true">Delete</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+  </div>
+
+
+
+
+
+
+##Add_Reward_Program Modal
+##
+##
+  <div class="modal hide fade" id="Add_Reward_Program_Modal" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+      <div class="modal-header" align='center'>
+          <h3>Add a Reward program</h3>
+      </div>
+
+
+      <div class="modal-body" >
+          <p style="text-align: center" >Please input all information and press OK.</p><br>
+
+          <form name="Add_Reward_Program_Form" style="text-align:left" >
+              <table >
+                  <tr>
+                      <td>Program:</td>
+                      <td>
+                          <div class="clearfix">
+                              <label for="normalSelect"></label>
+                              <div class="input">
+                                  <select name="normalSelect" id="normalSelect5">
+                                      <option>American Airlines</option>
+                                      <option>United Airlines</option>
+                                      <option>Delta Airlines</option>
+                                      <option>US Airways</option>
+                                      <option>British Airways</option>
+                                      <option>EVA Airlines Airways</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Username:</td>
+                      <td><input type="text"  name="username" title="Input username" ></td>
+                  </tr>
+                  <tr>
+                      <td>Password:</td>
+                      <td><input type="password"  name="password" title="Input password" ></td>
+                  </tr>
+                  <tr>
+                      ##                                            <td>Save Passwords on:</td>
+##                                            <td><input type="text"  name="username" title="text input sample" ></td>
+                                        <tr>
+                  <td>Save Password on:</td>
+                  <td>
+                      <div class="clearfix">
+                          <label for="normalSelect"></label>
+                          <div class="input">
+                              <select name="normalSelect" id="normalSelect">
+                                  <option>This Computer</option>
+                                  <option>PointTracker Server</option>
+                              </select>
+                          </div>
+                      </div>
+                  </td>
+
+
+
+              </tr>
+                  <tr>
+                      <td>Expiration:</td>
+                      <td><div id="datetimepicker2" class="input-append date" >
+                          <input type="text" style="width: 80px;"> <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> </span>
+                      </div>
+                      </td>
+                  </tr>
+              </table>
+          </form>
+
+          <br>
+          <br>
+          <div id="Add_Reward_Program_Verify_Tag"  ></div>
+
+      </div>
+
+      <div class="modal-footer">
+          <button class="btn btn-primary" id="PA_Confirm_Modal_Button" onclick="Confirm_Add_Reward_Program()" data-dismiss="modal" aria-hidden="true">Add Reward Program</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+##Refresh Reward program modal
+##
+##
+                  <div class="modal hide fade" id="Refresh_Reward_Program"  data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-header" align='center'>
+                    <h3>Refreshing Award Program</h3>
+                </div>
+
+                <div class="modal-body" >
+
+                    <div style="overflow:auto;">
+                        <div class="row-fluid">
+                            <div class="span6 offset4" id='refresh_program_list'></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+
+
+
+
+
+##Edit_Reward_Program Modal
+##
+##
+  <div class="modal hide fade" id="Edit_Reward_Program" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-header" align='center'>
+                    <h3>Edit Reward Program</h3>
+                </div>
+
+
+                <div class="modal-body" >
+
+                    <form name="Edit_Reward_Program_Form"  style="text-align:left">
+                                <table >
+                                        <tr>
+                                            <td>Program:</td>
+                                            <td>
+                                            <div class="clearfix">
+                                                <label for="normalSelect"></label>
+                                                <div class="input">
+                                                    <select name="normalSelect" id="normalSelect1">
+                                                        <option>American Airlines</option>
+                                                        <option>United Airlines</option>
+                                                        <option>Delta Airlines</option>
+                                                        <option>US Airlines</option>
+                                                        <option>British Airways</option>
+                                                        <option>EVA Airlines Airways</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                           </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username:</td>
+                                            <td><input type="text"  name="username" title="Input a Username" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password:</td>
+                                            <td><input type="password"  name="password" title="Input a Password" ></td>
+                                        </tr>
+                                        <tr>
+##                                            <td>Save Passwords on:</td>
+##                                            <td><input type="text"  name="username" title="text input sample" ></td>
+                                        <tr>
+                                            <td>Save Password on:</td>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <label for="normalSelect"></label>
+                                                    <div class="input">
+                                                        <select name="normalSelect" id="normalSelect2">
+                                                            <option>This Computer</option>
+                                                            <option>PointTracker Server</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>Expiration:</td>
+                                              <td><div id="datetimepicker" class="input-append date" >
+                                                  <input type="text" style="width: 80px;"> <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> </span>
+                                                 </div>
+                                              </td>
+                                        </tr>
+                                </table>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">OK</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+
+
+
+
+
+
+##Delete_Reward_Program Modal
+##
+##            <div class="modal hide fade"  id="Delete_Reward_Program" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+            <div class="modal hide fade"  id="Delete_Reward_Program_Modal">
+
+                <div class="modal-header" style ="background-color: #DFF3FC" align='center'>
+                    <h3>Delete a Reward Program</h3>
+                </div>
+
+                <div class="modal-body" style="text-align: center">
+                    <p>Are you Sure?</p>
+                </div>
+
+                <div class="modal-footer" style ="background-color: #DFF3FC">
+                    <button id="PA_Delete_Modal_Button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container" align='center'>
+        <p>Copyright 2013 PointTracker LLC</p>
+
+      </div>
+    </footer>
+
+
+
+
+
+
+
+    <!-- Javascript Stuff
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+#### Javascript Libraries
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/jquery_1.9.1/jquery.js')}"></script>
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap.js')}"></script>
+##
+##
+#### Addons and widgets
+##      <script src="${request.static_url('pointtracker:static/bootstrap/js/bootstrap-datetimepicker.min.js')}" type="text/javascript"></script>
+
+  <script src="/static/bootstrap/js/jquery_1.9.1/jquery.js" type="text/javascript"></script>
+  <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+  <script src="/static/bootstrap/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+  <script src="/static/js/pointtracker.js" type="text/javascript"></script>
+## Javscript
+
+
+## Preload (Cache) all images, etc here (see pointTracker.css)
+  <div id="preload">
+      <img src="/static/graphics/green_check_small.png" width="1" height="1" alt="Image" />
+      <img src="/static/graphics/refresh_animated.gif" width="1" height="1" alt="Image" />
+  </div>
+
+
+  </body>
+</html>

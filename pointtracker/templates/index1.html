@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>${project}</title>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    </head>
+    <body>
+        <div id="container">
+                <header>
+                    <h1>Current Project: ${project}</h1>
+                    <h1> You are on index1.html</h1>
+                    <h2>Airline : ${airline}</h2>
+                    <h2>Username : ${username}</h2>
+                    <h2>Password : ${password}</h2>
+
+
+                    <h1>this is the pointtracker index1.html</h1>
+
+
+                    <p>
+                        <a href="/index2">Visit Index 2.html</a>
+                    </p>
+
+
+                    % for a in ['one', 'two', 'three', 'four', 'five']:
+                    % if a[0] == 't':
+                    its two or three
+                    % elif a[0] == 'f':
+                    four/five
+                    % else:
+                    one
+                    % endif
+                    % endfor
+
+                    <ol>
+                        % for a in ("one", "two", "three"):
+                        <li>Item ${loop.index}: ${a}</li>
+                        % endfor
+                    </ol>
+
+                    <%def name="hello()">
+                         hello world
+                    </%def>
+
+                   ${hello()}
+
+
+
+            <form method="POST" action="page4">
+                <div>
+                    <input type="text" name="firstname"/>
+                </div>
+                <div>
+                    <input type="text" name="lastname"/>
+                </div>
+                <input type="submit" value="Submit"/>
+            </form>
+
+
+
+
+            <p> ${mylist}</p>
+
+
+            <ol>
+                % for item in mylist:
+                <li>Item : ${item}</li>
+                % endfor
+            </ol>
+
+
+
+            <ol>
+                % for item in myobj:
+                <li>Item : ${item}</li>
+                % endfor
+            </ol>
+
+
+            <textarea name="txtareatest" cols="100" rows="10">
+                % for sub_account in PTaccount:
+                         Item : ${sub_account[0]}
+                   % for program_account in sub_account[1]:
+                          -------------${program_account['program_name']} ${program_account['program_username']} ${program_account['program_password']}
+                   % endfor
+                % endfor
+            </textarea>
+
+
+            <ul>
+                % for sub_account in PTaccount:
+                <li>Item : ${sub_account[0]}</li>
+                % for program_account in sub_account[1]:
+                <li> -------------${program_account['program_name']} ${program_account['program_username']} ${program_account['program_password']}   </li>
+                % endfor
+                % endfor
+            </ul>
+
+
+            <p></p>
+            <iframe src="index2" width="400" height="150">
+                <p>iframes are not supported by your browser.</p>
+            </iframe>
+
+
+            </header>
+
+
+
+            <div id="main">
+            </div>
+
+            <footer>
+            </footer>
+
+        </div> <!end of container>
+
+    </body>
+</html>

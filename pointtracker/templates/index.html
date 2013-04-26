@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <title>PointTracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/bootstrap_2.3.1/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/static/bootstrap/bootstrap_2.3.1/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/static/css/pointtracker.css" rel="stylesheet">
+    <link href="/static/bootstrap/bootstrap_2.3.1/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+
+
+  <body>
+      <style type="text/css">
+          body { background: #DFF3FC; }
+      </style>
+
+       <div>
+            <img style="text-align: center;"  src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="200" width="1280">
+       </div>
+
+      <div style="text-align: center">
+          <br>
+          <br>
+          <a href="#Register_Modal" onclick = "Register()" class="btn btn-large btn-primary" data-toggle="modal">Register</a>
+          <a href="#Sign_In_Modal" onclick = "Sign_In()" class="btn btn-large btn-success" data-toggle="modal">Sign in</a>
+          <br>
+          <br>
+          <br>
+          <br>
+      </div>
+
+      <div>
+          <img style="text-align:center"    src="/static/graphics/sign_in_page.png" alt="sign_in_intro" height="600" width="1280">
+      </div>
+
+
+
+
+
+##Sign_in Modal
+##
+##
+  <div class="modal hide fade" id="Sign_In_Modal" data-keyboard="false" data-backdrop="static">
+      <div class="modal-header" style="text-align: center">
+          <h3>PointTracker Sign in</h3>
+      </div>
+
+      <div class="modal-body" >
+          <form name="Sign_In_Form" method="POST" style="text-align:left" >
+              <table >
+                  <tr>
+                      <td><label for="username2">Username:</label></td>
+                      <td><input class ="input-medium" type="text" name="username2" id="username2" onkeydown="if (event.keyCode == 13) document.getElementById('Sign_In_Submit_Modal_Button').click()" /></td>
+                  </tr>
+                  <tr>
+                    <td><label for="password2">Password:</label></td>
+                    <td><input class ="input-medium" type="password" name="password2" id="password2" onkeydown="if (event.keyCode == 13) document.getElementById('Sign_In_Submit_Modal_Button').click()" /></td>
+                  </tr>
+              </table>
+          </form>
+          <label class="checkbox">
+              <input type="checkbox" id="remember_me" name="remember_me" value='1' checked='checked'>  Keep me signed in on this computer
+          </label>
+      </div>
+
+        <div style="text-align: center">
+            <div id="Sign_In_Msg_Tag"></div>
+        </div>
+
+      <div class="modal-footer">
+##          <a href="/pointtracker" class="btn btn-success" id="Sign_in_Confirm_Modal_Button"  >Sign In</a>
+          <button class="btn btn-success" id="Sign_In_Submit_Modal_Button"  >Sign In</button>
+          <button class="btn" data-dismiss="modal"  >Cancel</button>
+      </div>
+  </div>
+
+
+
+
+
+
+##Register Modal
+##
+##
+      <div class="modal hide fade" id="Register_Modal" data-keyboard="false" data-backdrop="static" >
+      <div class="modal-header" style="text-align: center">
+          <h3>PointTracker Account Registration</h3>
+      </div>
+
+      <div class="modal-body" >
+          <form name="Register_Form"  >
+            <table>
+                <tr>
+                    <td><label for="firstname">First name:</label></td>
+                    <td><input class ="input-medium" type="text" name="firstname" id="firstname" onkeydown="if (event.keyCode == 13) document.getElementById('Register_Submit_Modal_Button').click()" /></td>
+                </tr>
+                <tr>
+                    <td><label for="lastname">Last name:</label></td>
+                    <td><input class ="input-medium" type="text" name="lastname" id="lastname" onkeydown="if (event.keyCode == 13) document.getElementById('Register_Submit_Modal_Button').click()"/></td>
+                </tr>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input class ="input-medium" type="text" name="username" id="username" onkeydown="if (event.keyCode == 13) document.getElementById('Register_Submit_Modal_Button').click()"/></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input class ="input-medium" type="password" name="password" id="password" onkeydown="if (event.keyCode == 13) document.getElementById('Register_Submit_Modal_Button').click()"/></td>
+                </tr>
+                <tr>
+                    <td><label for="password_confirm">Confirm Password:</label></td>
+                    <td><input class ="input-medium" type="password" name="password_confirm" id="password_confirm" onkeydown="if (event.keyCode == 13) document.getElementById('Register_Submit_Modal_Button').click()"/></td>
+                </tr>
+                <tr>
+##                    <td><label for="email">Email:</label></td>
+##                    <td><input class ="input-medium" type="text" name="email" id="email" /></td>
+##                </tr>
+##                <tr>
+##                    <td><label for="email_confirm">Confirm Email:</label></td>
+##                    <td><input class ="input-medium" type="text" name="email_confirm" id="email_confirm" /></td>
+##                </tr>
+
+            </table>
+          </form>
+
+           <label class="checkbox">
+              <input type="checkbox" id="remember_me2" name="remember_me2" value='1' checked='checked'>  Keep me signed in on this computer
+          </label>
+      </div>
+     <div style="text-align: center">
+        <div id="Register_Msg_Tag"></div>
+    </div>
+
+      <div class="modal-footer">
+          <button class="btn btn-primary" id="Register_Submit_Modal_Button" onclick=""  >Register</button>
+          <button class="btn" data-dismiss="modal" >Cancel</button>
+      </div>
+  </div>
+
+
+
+
+  <!-- Footer
+  ================================================== -->
+    <footer class="footer">
+      <div class="container" style="text-align: center">
+        <p>Copyright 2013 PointTracker LLC</p>
+      </div>
+    </footer>
+
+
+
+
+
+
+
+    <!-- Javascript Stuff
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+#### Javascript Libraries
+  <script src="/static/jquery/jquery_1.9.1/jquery.js" type="text/javascript"></script>
+  <script src="/static/bootstrap/bootstrap_2.3.1/js/bootstrap.js" type="text/javascript"></script>
+  <script src="/static/js/index.js" type="text/javascript"></script>
+## Javscript
+
+
+  </body>
+</html>
