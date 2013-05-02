@@ -1,9 +1,12 @@
 import requests                   #Requests Http Library
 from bs4 import BeautifulSoup
-#import mtk
+import mtk
 import ssladapter
 from datetime import datetime
 from datetime import timedelta
+#from ptserver import AES_Key
+#from constants import AES_Key
+import Globalvars
 
 #from ssl import PROTOCOL_SSLv2
 from ssl import PROTOCOL_SSLv3
@@ -81,10 +84,10 @@ def get_program_account_info(RP_account):
 
 
 
-#    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
     form_data['ctl00$phMain$loginModule$ctl00$loginForm$UserName'] = RP_account['RP_username']
-#    form_data['ctl00$phMain$loginModule$ctl00$loginForm$Password'] = mtk.decrypt(key,RP_account['RP_password'])
-    form_data['ctl00$phMain$loginModule$ctl00$loginForm$Password'] = RP_account['RP_password']
+    form_data['ctl00$phMain$loginModule$ctl00$loginForm$Password'] = mtk.decrypt(Globalvars.AES_Key,RP_account['RP_password'])
+#    form_data['ctl00$phMain$loginModule$ctl00$loginForm$Password'] = RP_account['RP_password']
 
 
 

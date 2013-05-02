@@ -1,10 +1,11 @@
 import requests                   #Requests Http Library
 from bs4 import BeautifulSoup
-#import mtk
+import mtk
 import time
 from datetime import datetime
-
-
+#from ptserver import AES_Key
+#from constants import AES_Key
+import Globalvars
 
 def get_program_account_info(RP_account):
     url_loginSubmit = 'https://www.aa.com/login/loginSubmit.do'
@@ -12,11 +13,11 @@ def get_program_account_info(RP_account):
 
     form_data = dict()
 
-#    key = '0123456789abcdef'
+#    AES_key = '0123456789abcdef'
 
     form_data['loginId'] = RP_account['RP_username']
-#    form_data['password'] = mtk.decrypt(key,RP_account['RP_password'])
-    form_data['password'] = RP_account['RP_password']
+    form_data['password'] = mtk.decrypt(Globalvars.AES_Key,RP_account['RP_password'])
+#    form_data['password'] = RP_account['RP_password']
 
     s = requests.session()
 
@@ -24,7 +25,7 @@ def get_program_account_info(RP_account):
 
     r_obj2 = s.get(url_myAccountAccess)                         #Get Account Info page
 
-    return (r_obj2.text)                                        #return webpage with account info to scrape
+    return r_obj2.text                                        #return webpage with account info to scrape
 
 
 

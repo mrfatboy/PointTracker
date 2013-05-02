@@ -1,11 +1,11 @@
-from base64 import urlsafe_b64encode
+#from base64 import urlsafe_b64encode
 from zope.interface import implementer
 from pyramid.interfaces import IAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.security import Authenticated, Everyone
 import hashlib
 from PointTracker import Valid_PointTracker_Account
-
+import Globalvars
 
 #class Root(object):
 #    __acl__ = [
@@ -69,7 +69,7 @@ class MyAuthenticationPolicy(object):
         password = request.POST['password']
 
         hash = hashlib.sha256()
-        string = username  + "saltstring" + password
+        string = username  + Globalvars.Salstring + password
         encode_string = string.encode('utf-8')
 
         hash.update(encode_string)
@@ -101,7 +101,7 @@ class MyAuthenticationPolicy(object):
         remember_me = request.POST['remember_me']
 
         hash = hashlib.sha256()
-        string = username  + "saltstring" + password
+        string = username  + Globalvars.Saltstring + password
         encode_string = string.encode('utf-8')
 
         hash.update(encode_string)

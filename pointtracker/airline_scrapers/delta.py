@@ -2,11 +2,14 @@ import requests                   #Requests Http Library
 from bs4 import BeautifulSoup
 import re
 from ssl import PROTOCOL_TLSv1
-#import mtk
+import mtk
 import time
 import ssladapter
 
 from datetime import datetime
+#from ptserver import AES_Key
+#from constants import AES_Key
+import Globalvars
 
 
 
@@ -34,12 +37,12 @@ def get_program_account_info(RP_account):
     }
 
 
-#    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
     form_data['username'] = RP_account['RP_username']
     form_data['usernm'] = RP_account['RP_username']
-#    form_data['password'] = mtk.decrypt(key,RP_account['RP_password'])
-#    form_data['pwd'] = mtk.decrypt(key,RP_account['RP_password'])
-    form_data['password'] = RP_account['RP_password']
+    form_data['password'] = mtk.decrypt(Globalvars.AES_Key,RP_account['RP_password'])
+    form_data['pwd'] = form_data['password']
+#    form_data['password'] = RP_account['RP_password']
     form_data['pwd'] = RP_account['RP_password']
 
     s = requests.Session()

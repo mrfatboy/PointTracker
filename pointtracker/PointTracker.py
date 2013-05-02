@@ -27,6 +27,7 @@ import airline_scrapers.britishairways
 import airline_scrapers.delta
 import airline_scrapers.usairways
 import airline_scrapers.evaair
+#from ptserver import AES_Key
 
 import mtk              #Mike's toolkit
 #import subprocess
@@ -34,6 +35,7 @@ from pymongo import Connection
 import uuid
 import hashlib
 #import base64
+import Globalvars
 
 
 
@@ -50,13 +52,13 @@ def Init_PointTracker_Database():
 
 
 def Update_PointTracker_Database(PT_account):
-    Encrypt_PT_account_Reward_Program_Passwords(PT_account)                                 #encrypt all Reward Program Password before sending to database
+#    Encrypt_PT_account_Reward_Program_Passwords(PT_account)                                 #encrypt all Reward Program Password before sending to database
     PT_database.update({'_id':PT_account['_id']} ,{'PT_account':PT_account})
     return PT_account
 
 
 def Insert_PointTracker_Database(PT_account):
-    Encrypt_PT_account_Reward_Program_Passwords(PT_account)                                 #encrypt all Reward Program Password before sending to database
+#    Encrypt_PT_account_Reward_Program_Passwords(PT_account)                                 #encrypt all Reward Program Password before sending to database
     PT_database.insert({'_id':PT_account['_id'],'PT_account':PT_account})
     return
 
@@ -70,7 +72,8 @@ def Get_PointTracker_Account(_id):
         PT_account = None                                                   ## No such PT_account
     else:
         PT_account = db_obj['PT_account']
-        Decrypt_PT_account_Reward_Program_Passwords(PT_account)                             #we need to decrypt RP_account passwords so that they can be edited on the client side
+#        Remove_PT_account_Reward_Program_Passwords(PT_account)                             #we need to remove RP_account passwords so that they can't be seen on client side
+#        Decrypt_PT_account_Reward_Program_Passwords(PT_account)                             #we need to decrypt RP_account passwords so that they can be edited on the client side
 #        Encrypt_PT_account_Reward_Program_Passwords(PT_account)
     return PT_account                                               ## return the a valid authentiated PT_account
 
@@ -95,7 +98,7 @@ def Register_PointTracker_Account(register_info):
 
 
     hash = hashlib.sha256()
-    string = register_info['username']  + "saltstring" + register_info['password']
+    string = register_info['username']  + Globalvars.Saltstring + register_info['password']
     encode_string = string.encode('utf-8')
 
     hash.update(encode_string)
@@ -167,8 +170,8 @@ def Add_Reward_Program(PT_obj):
     RP_account['RP_id'] = str(uuid.uuid4())                                         #create a new id for this program account
     RP_account['RP_name']= PT_obj['RP_name']                                    ## set the new name
     RP_account['RP_username']= PT_obj['RP_username']                                 ## set the new name
-#    RP_account['RP_password']= encrypt_password(PT_obj['RP_password'])                 ## set the new name
-    RP_account['RP_password']= PT_obj['RP_password']                                 ## set the new name
+    RP_account['RP_password']= encrypt_password(PT_obj['RP_password'])                 ## set the new name
+#    RP_account['RP_password']= PT_obj['RP_password']                                 ## set the new name
 
     RP_account = Process_Reward_Program(RP_account)                                     #scrape and check for error before inserting in PT
 
@@ -228,20 +231,20 @@ def Refresh_Reward_Program(PT_obj):
     refreshed_RP_account = Process_Reward_Program(RP_account)                  # Refresh it by calling the appropriate scraper
     if not refreshed_RP_account['RP_error']:                  #no error update the database otherwise display error in client
         Set_Reward_Program_Account(PT_account, refreshed_RP_account, PT_obj)
-        Update_PointTracker_Database( PT_account)
+        Update_PointTracker_Database(PT_account)
     return refreshed_RP_account
 
 
 
 
 def Edit_Reward_Program(PT_obj):
-    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
 
     PT_account = Get_PointTracker_Account(PT_obj['_id'])                #Get the PT account
     RP_account = Get_Reward_Program_Account(PT_account,PT_obj)         # Get the Reward Program account that we want to modify
     RP_account['RP_username'] = PT_obj['RP_username']                  # Update with edited information from user
-#    RP_account['RP_password'] = mtk.encrypt(key,PT_obj['RP_password'])  #encrypt new password
-    RP_account['RP_password'] = PT_obj['RP_password']  #encrypt new password
+    RP_account['RP_password'] = mtk.encrypt(Globalvars.AES_Key,PT_obj['RP_password'])  #encrypt new password
+#    RP_account['RP_password'] = PT_obj['RP_password']  #encrypt new password
     RP_account['RP_name'] = PT_obj['RP_name']
     RP_account['RP_balance'] = 0                                        #zero out balance because user could enter in a whole different account. We want don't want the account balance delta based off old account
     RP_account['RP_balance_delta'] = 0
@@ -289,6 +292,7 @@ def Get_Reward_Program_Account (PT_account, PT_obj):
         if RP_account['RP_id'] == PT_obj['RP_id']:                      #We now have our RP_account
             break
     RP_account['RP_callback_tag'] = PT_obj['RP_callback_tag']           # embed tag for callback functions
+#    RP_account['RP_password'] = ''                                      #remove password for client for security
     return RP_account
 
 
@@ -299,15 +303,28 @@ def Get_Reward_Program_Account (PT_account, PT_obj):
 ## all of the Reward Program Passwords so he can edit them if he desires.
 
 def Decrypt_PT_account_Reward_Program_Passwords(PT_account):
-    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
     PT_sub_accounts = PT_account['PT_sub_accounts']
 
     for SA_account in PT_sub_accounts:                               #iterate over a sub accounts
         SA_program_accounts = SA_account['SA_program_accounts']        #get the Reward program accounts for this subaccount
         for RP_account in SA_program_accounts:                               #decrypt the passwords for the client side.  Our datebase is still encrypted
-            RP_account['RP_password'] = mtk.decrypt(key,RP_account['RP_password'])
+            RP_account['RP_password'] = mtk.decrypt(Globalvars.AES_Key,RP_account['RP_password'])
     return PT_account
 
+
+## We store all Reward Program Passwords in the database encrypted.  However, when the client pulls the PT_account we need to remove
+## all of the Reward Program Passwords so client can't see them for security. If client wants to edit a RP account they just have to enter new password
+
+def Remove_PT_account_Reward_Program_Passwords(PT_account):
+#    AES_Key = '0123456789abcdef'
+    PT_sub_accounts = PT_account['PT_sub_accounts']
+
+    for SA_account in PT_sub_accounts:                               #iterate over a sub accounts
+        SA_program_accounts = SA_account['SA_program_accounts']        #get the Reward program accounts for this subaccount
+        for RP_account in SA_program_accounts:                               #Remove the passwords for the client side.  Our datebase is still encrypted
+            RP_account['RP_password'] = ""
+    return PT_account
 
 
 
@@ -403,9 +420,9 @@ def Process_Reward_Program(RP_account):
 
 
 def encrypt_password(password):
-    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
 
-    encrypted_password = mtk.encrypt(key,password)
+    encrypted_password = mtk.encrypt(Globalvars.AES_Key,password)
     return encrypted_password
 
 
@@ -428,13 +445,13 @@ def Return_Reward_Program(PT_obj):
 ## This is just a utility to encrypt all the passwords for the PT_account and update it in the datebase
 ##It is not normally used in the program
 def Encrypt_PT_account_Reward_Program_Passwords(PT_account):
-    key = '0123456789abcdef'
+#    AES_Key = '0123456789abcdef'
     PT_sub_accounts = PT_account['PT_sub_accounts']
 
     for SA_account in PT_sub_accounts:                               #iterate over a sub accounts
         SA_program_accounts = SA_account['SA_program_accounts']        #get the Reward program accounts for this subaccount
         for RP_account in SA_program_accounts:                               #decrypt the passwords for the client side.  Our datebase is still encrypted
-            RP_account['RP_password'] = mtk.encrypt(key,RP_account['RP_password'])
+            RP_account['RP_password'] = mtk.encrypt(Globalvars.AES_Key,RP_account['RP_password'])
 
 
 #    Update_PointTracker_Database(PT_account)                        #write it back out to the database
@@ -467,7 +484,7 @@ def hack_mongo(request):
     username = request['username']
     password = request['password']
     hash = hashlib.sha256()
-    string = request['username']  + "saltstring" + request['password']
+    string = request['username']  + Globalvars.Saltstring + request['password']
     encode_string = string.encode('utf-8')
 
     hash.update(encode_string)

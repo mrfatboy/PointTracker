@@ -14,6 +14,8 @@ from PointTracker import Refresh_Reward_Program
 from PointTracker import Edit_Reward_Program
 from PointTracker import Delete_Reward_Program
 from PointTracker import Return_Reward_Program
+from PointTracker import Remove_PT_account_Reward_Program_Passwords
+
 #from PointTracker import hack_mongo
 
 
@@ -70,6 +72,7 @@ def server_view4(request):
 def server_view5(request):
     _id = request.cookies['PointTracker_Login']                            # cookie is in here and contains the _id
     PT_account = Get_PointTracker_Account(_id)                             # Pull the PT_account out of the database
+    Remove_PT_account_Reward_Program_Passwords(PT_account)                 # we need to remove RP_account passwords so that they can't be seen on client side
     return PT_account
 
 
@@ -126,6 +129,7 @@ def server_view12(request):
 @view_config(renderer="json", name="Get_Reward_Program_View")
 def server_view13(request):
     RP_account = Return_Reward_Program(request.GET)                         #Returns Reward Program from database  (used for testing purposes without scraping and updating database
+    RP_account['RP_password'] = ''                                          #Remove password for client side for security reasons. no reason for the client to have it.
     return RP_account
 
 

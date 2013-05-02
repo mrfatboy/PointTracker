@@ -4,7 +4,7 @@ from pyramid.config import Configurator
 from PTrequest import PTRequest
 from auth import authentication_policy, authorization_policy
 #from auth import Root
-
+import mtk
 
 from PointTracker import Init_PointTracker_Database
 
@@ -13,9 +13,11 @@ from PointTracker import Init_PointTracker_Database
 #def main(global_config, **settings):
 #def main(global_config, **settings):
 #    config = Configurator(settings=settings)
+AES_Key = ''
 
 def main():
-
+    global AES_Key
+    AES_Key = mtk.read_file("AES_Key.txt")
 
     Init_PointTracker_Database()                                        #Initialize the PointTracker Mongo database
 
