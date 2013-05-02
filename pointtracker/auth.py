@@ -69,7 +69,7 @@ class MyAuthenticationPolicy(object):
         password = request.POST['password']
 
         hash = hashlib.sha256()
-        string = username  + Globalvars.Salstring + password
+        string = username  + Globalvars.Saltstring + password
         encode_string = string.encode('utf-8')
 
         hash.update(encode_string)
