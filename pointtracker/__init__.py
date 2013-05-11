@@ -4,30 +4,18 @@ from pyramid.config import Configurator
 from PTrequest import PTRequest
 from auth import authentication_policy, authorization_policy
 #from auth import Root
-import mtk
-
-from PointTracker import Init_PointTracker_Database
-
-
-
-#def main(global_config, **settings):
-#def main(global_config, **settings):
-#    config = Configurator(settings=settings)
-AES_Key = ''
-
-def main():
-    global AES_Key
-    AES_Key = mtk.read_file("AES_Key.txt")
-
-    Init_PointTracker_Database()                                        #Initialize the PointTracker Mongo database
+from PointTracker import Init_App
+import Globalvars
+import os
 
 
-#    config = Configurator(authentication_policy=auth.authentication_policy,
-#        authorization_policy=auth.authorization_policy,
-#        settings=settings)
+
+def main(global_config, **settings):
+    Init_App()
 
     config = Configurator(authentication_policy=authentication_policy,
-                          authorization_policy=authorization_policy)
+                          authorization_policy=authorization_policy,
+                          settings=settings)
 
 
     config.add_renderer('.html', mako_factory)                          #Make it so .html files are recognized and goes thru the MAKO factory
@@ -48,6 +36,10 @@ def main():
 
 if __name__ == '__main__':
 
-    app = main()
-    server = make_server('0.0.0.0', 6543, app)
+    app = main(global_config=None)
+    if Globalvars.DEVELOPMENT:
+        server = make_server('0.0.0.0', 6543, app)                      #Serve from our local server
+    else:
+        server = make_server(os.environ['OPENSHIFT_INTERNAL_IP'], 8080, app)    #Serve from the Openshift website
+#        server = make_server('127.11.64.1', 8080, app)
     server.serve_forever()

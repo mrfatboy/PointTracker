@@ -164,7 +164,18 @@ def scrape_webpage(html_list):
 
     now_date_obj = datetime.now()
 
-    if RP_expiration_date != 'None':                                                                                #no expiration date on page ( maybe new account or no miles)
+    RP_account['RP_datestamp'] = str(now_date_obj.month) + '/' + str(now_date_obj.day) + '/' + str(now_date_obj.year)
+    RP_account['RP_timestamp'] = str(now_date_obj.hour) + ':' + str(now_date_obj.minute) + ':' + str(now_date_obj.second)
+    RP_account['RP_name']='United Airlines'                                          #set what program type it is
+    RP_account['RP_inactive_time'] = '18 Months'
+    RP_account['RP_partner']= 'Star Alliance'
+
+
+    if RP_expiration_date == 'None':                                                                                #no expiration date on page ( maybe new account or no miles)
+        RP_account['RP_expiration_date'] = 'N/A'
+        RP_account['RP_days_remaining'] =  'N/A'
+        RP_account['RP_last_activity_date'] = 'N/A'
+    else:
         RP_expiration_date = RP_expiration_date.replace('<span id="ctl00_ContentInfo_AccountSummary_lblMileageExpireDate">','')                        #remove first part of tag
         RP_expiration_date = RP_expiration_date.replace('</span>','')                                                                  #remove second part of tag to leave only name
 
@@ -175,54 +186,43 @@ def scrape_webpage(html_list):
         last_activity_date_obj = datetime.strptime(RP_expiration_date,'%m/%d/%Y')
         days_left = last_activity_date_obj - now_date_obj
         RP_account['RP_days_remaining'] =  days_left.days
-    else:
-        RP_account['RP_expiration_date'] = 'N/A'
-        RP_account['RP_days_remaining'] =  'N/A'
+    #    s4 = s.find_all(lambda tag: tag.name=='span' and tag.has_key('id') and tag.has_key('class'))      #find the table with Most recent activity
 
-
-    RP_account['RP_datestamp'] = str(now_date_obj.month) + '/' + str(now_date_obj.day) + '/' + str(now_date_obj.year)
-    RP_account['RP_timestamp'] = str(now_date_obj.hour) + ':' + str(now_date_obj.minute) + ':' + str(now_date_obj.second)
-    RP_account['RP_name']='United Airlines'                                          #set what program type it is
-    RP_account['RP_inactive_time'] = '18 Months'
-    RP_account['RP_partner']= 'Star Alliance'
-
-#    s4 = s.find_all(lambda tag: tag.name=='span' and tag.has_key('id') and tag.has_key('class'))      #find the table with Most recent activity
-
-# there are 2 main places to find the most recent activity
-#first we will try to find it listed on the main page.  It may or may not be there. It's time dependent and I'm not sure when it comes off and they just put it in the main statements
-    activity_table = soup.find(lambda tag: tag.name=='table' and tag.has_key('id') and tag['id']=="activity")      #find the table with Most recent activity
-    if activity_table != None :                                                                                     # we have recent activity here
-        activity_data = activity_table.findAll(lambda tag: tag.name=='tr')                                          #get all the table data
-        RP_last_activity_date = str(activity_data[1])                                                                                  #the most recent is the #2 obj in the Beautiful soup object
-        RP_account['RP_last_activity_date'] = RP_last_activity_date[9:19]                                           #slice the date out of the string
-    else:
-#it was not on main page. now we have to go back 3 years of statements to make sure we cover 18 months
-#Now we have to search the 3 different html pages of activity
-        activity_list = []                                              #need to make a list of all the activity dates on the remaining 3 html pages
-
-        soup = BeautifulSoup(html_list[1],"lxml")                      #Current year statement page
-        activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
-        if activity_soup != None:
-            add_activity_date_list(activity_soup,activity_list)        #add all actvity to our activity_list
-
-        soup = BeautifulSoup(html_list[2],"lxml")                      #Go back another year and check for activity
-        activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
-        if activity_soup != None:
-            add_activity_date_list(activity_soup,activity_list)         #add all actvity to our activity_list
-
-        soup = BeautifulSoup(html_list[3],"lxml")                      #Go back another year and check for activity  (we need to cover 3 years to make sure we get 18 months worth. United only does statements by year)
-        activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
-        if activity_soup != None:
-            add_activity_date_list(activity_soup,activity_list)         #add all actvity to our activity_list
-
-        if activity_list is not None:
-            activity_list.sort(reverse=True)                             #We have some activity. get the newest date first
-
-            date_obj = datetime.strptime(activity_list[0],'%Y/%m/%d')      #We now have to put back into our original date format (first one in list is what we want)
-            RP_last_activity_date = datetime.strftime(date_obj,'%m/%d/%Y')
-            RP_account['RP_last_activity_date'] = RP_last_activity_date
+    # there are 2 main places to find the most recent activity
+    #first we will try to find it listed on the main page.  It may or may not be there. It's time dependent and I'm not sure when it comes off and they just put it in the main statements
+        activity_table = soup.find(lambda tag: tag.name=='table' and tag.has_key('id') and tag['id']=="activity")      #find the table with Most recent activity
+        if activity_table != None :                                                                                     # we have recent activity here
+            activity_data = activity_table.findAll(lambda tag: tag.name=='tr')                                          #get all the table data
+            RP_last_activity_date = str(activity_data[1])                                                                                  #the most recent is the #2 obj in the Beautiful soup object
+            RP_account['RP_last_activity_date'] = RP_last_activity_date[9:19]                                           #slice the date out of the string
         else:
-            RP_account['RP_last_activity_date'] = 'N/A'                     #There was nothing in the list. So no activity
+    #it was not on main page. now we have to go back 3 years of statements to make sure we cover 18 months
+    #Now we have to search the 3 different html pages of activity
+            activity_list = []                                              #need to make a list of all the activity dates on the remaining 3 html pages
+
+            soup = BeautifulSoup(html_list[1],"lxml")                      #Current year statement page
+            activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
+            if activity_soup != None:
+                add_activity_date_list(activity_soup,activity_list)        #add all actvity to our activity_list
+
+            soup = BeautifulSoup(html_list[2],"lxml")                      #Go back another year and check for activity
+            activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
+            if activity_soup != None:
+                add_activity_date_list(activity_soup,activity_list)         #add all actvity to our activity_list
+
+            soup = BeautifulSoup(html_list[3],"lxml")                      #Go back another year and check for activity  (we need to cover 3 years to make sure we get 18 months worth. United only does statements by year)
+            activity_soup = soup.find_all('span', class_='Notes')          #zero in activity dates on this html page
+            if activity_soup != None:
+                add_activity_date_list(activity_soup,activity_list)         #add all actvity to our activity_list
+
+            if activity_list is not None:
+                activity_list.sort(reverse=True)                             #We have some activity. get the newest date first
+
+                date_obj = datetime.strptime(activity_list[0],'%Y/%m/%d')      #We now have to put back into our original date format (first one in list is what we want)
+                RP_last_activity_date = datetime.strftime(date_obj,'%m/%d/%Y')
+                RP_account['RP_last_activity_date'] = RP_last_activity_date
+            else:
+                RP_account['RP_last_activity_date'] = 'N/A'                     #There was nothing in the list. So no activity
 
     return RP_account
 

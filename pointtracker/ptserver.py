@@ -6,8 +6,9 @@ from auth import authentication_policy, authorization_policy
 #from auth import Root
 import mtk
 from PointTracker import Init_PointTracker_Database
+from PointTracker import Init_App
 
-import Globalvars
+#import Globalvars
 
 
 
@@ -18,10 +19,12 @@ import Globalvars
 
 def main():
 
-    Globalvars.AES_Key = mtk.read_file("AES_Key.dng")
-    Globalvars.Saltstring = mtk.read_file("Saltstring.dng")
+    Init_App()
 
-    Init_PointTracker_Database()                                        #Initialize the PointTracker Mongo database
+#    Globalvars.AES_Key = mtk.read_file("AES_Key.dng")
+#    Globalvars.Saltstring = mtk.read_file("Saltstring.dng")
+
+#    Init_PointTracker_Database()                                        #Initialize the PointTracker Mongo database
 
 
 #    config = Configurator(authentication_policy=auth.authentication_policy,

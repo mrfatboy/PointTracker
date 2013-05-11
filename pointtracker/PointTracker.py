@@ -36,6 +36,37 @@ import uuid
 import hashlib
 #import base64
 import Globalvars
+import os
+
+
+
+def Init_App():
+    Globalvars.AES_Key = mtk.read_file("AES_Key.dng")
+    Globalvars.Saltstring = mtk.read_file("Saltstring.dng")
+
+    global  PT_database
+
+    if Globalvars.DEVELOPMENT:
+        mongo_con = Connection('localhost', 27017)
+        mongo_db = mongo_con.PT_database                                     ## is the database created? if not created it (PT_database)
+    else:
+        mongo_con = Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
+                           int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))
+
+        mongo_db = mongo_con[os.environ['OPENSHIFT_APP_NAME']]
+#        mongo_db.authenticate('admin','UvdYhEC48mNd')
+        mongo_db.authenticate(os.environ['OPENSHIFT_MONGODB_DB_USERNAME'],
+                              os.environ['OPENSHIFT_MONGODB_DB_PASSWORD'])
+
+
+
+    PT_database = mongo_db.PT_accounts                           ## Create our collection
+
+
+
+#    subprocess.Popen(['C:\\Dropbox\\PyProjects\\PointTracker\\pointtracker\\mongodb\\bin\\mongod', '--dbpath', 'C:\\Dropbox\\PyProjects\\PointTracker\\pointtracker\\static\\mongodb\\'])  ## Start the Mongo Database daemon
+
+    return
 
 
 
@@ -87,7 +118,7 @@ def Register_PointTracker_Account(register_info):
                     "_id" : "",
                     "PT_account_lastname" :  "Guest_lastname",
                     "PT_account_firstname" : "Guest_firstname",
-                    "PT_password" :          "Guest_password",
+#                    "PT_password" :          "Guest_password",
                     "PT_username" :          "Guest_username",
                     "PT_sub_accounts" : [{
                         "SA_id":"",
@@ -109,7 +140,7 @@ def Register_PointTracker_Account(register_info):
     PT_account['PT_account_firstname'] = register_info['firstname']
     PT_account['PT_account_lastname'] =  register_info['lastname']
     PT_account['PT_username'] = register_info['username']
-    PT_account['PT_password'] = register_info['password']
+#    PT_account['PT_password'] = register_info['password']
 #    PT_account['PT_email'] = register_info['email']
 
     Sub_accounts = PT_account['PT_sub_accounts']
