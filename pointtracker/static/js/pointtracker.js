@@ -227,7 +227,7 @@ function Display_PointTracker_Account  () {
     PT_account = Get_PointTracker_Account();
 
     $("#WelcomeName").remove();                             //remove if already there
-    $("#Welcome_User_Tag").append('<div id="WelcomeName" style="float: left; width: 32&#37; text-align: left;">' + 'Welcome ' + PT_account['PT_account_firstname'] +' '+ PT_account['PT_account_lastname'] +',' + '</div>');   // put new Welcome name there
+    $("#Welcome_User_Tag").append('<div id="WelcomeName" style="float: left; width: 32&#37; text-align: left;">' + 'Welcome ' + PT_account['PT_account_firstname'] +' '+ PT_account['PT_account_lastname']  + '</div>');   // put new Welcome name there
 
     for (var sub_account_index =0; sub_account_index<PT_account['PT_sub_accounts'].length;sub_account_index++) {
 
@@ -297,7 +297,7 @@ function Display_PointTracker_Account  () {
 
             tablecontents += "<td>"+ program_account['RP_last_activity_date']  +"</td>";
             tablecontents += "<td>"+ program_account['RP_expiration_date'] + "</br>";
-            if ((program_account['RP_expiration_date'] != 'Never Expire') && (program_account['RP_expiration_date'] != 'Self Check')) {
+            if ((program_account['RP_expiration_date'] != 'Never Expire') && (program_account['RP_expiration_date'] != 'Self Check') && (program_account['RP_days_remaining'] != 'N/A')) {
                 tablecontents += program_account['RP_days_remaining'] + " Days"  +"</td>";
             }
 

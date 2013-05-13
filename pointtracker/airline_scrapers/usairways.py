@@ -201,7 +201,9 @@ def scrape_webpage(html_page_list):
         RP_account['RP_last_activity_date']= last_activity_date
     else:
         RP_account['RP_last_activity_date']= 'N/A'                                            #
-#        RP_account['RP_last_activity_date']=  datetime.now().strftime("%m/%d/%Y")             #get today's date as string
+        RP_account['RP_days_remaining'] =  'N/A'
+        RP_account['RP_expiration_date']= 'N/A'
+        #        RP_account['RP_last_activity_date']=  datetime.now().strftime("%m/%d/%Y")             #get today's date as string
 
 
     RP_account['RP_inactive_time'] = '18 Months'

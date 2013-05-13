@@ -133,7 +133,14 @@ def server_view13(request):
     return RP_account
 
 
+@view_config(route_name='FAQ', renderer='pointtracker:templates/FAQ.html')               #pull up our FAQ.html
+def server_view14(request):
+    return {}
 
+
+@view_config(route_name='test_page', renderer='pointtracker:templates/test_page.html')               #pull up our FAQ.html
+def server_view15(request):
+    return {}
 
 
 
