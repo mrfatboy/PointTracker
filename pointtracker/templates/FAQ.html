@@ -24,25 +24,86 @@
 
 
   <body>
-      <style type="text/css">
-          body { background: #DFF3FC; }
-      </style>
+<style type="text/css">
 
-       <div>
-            <img style="text-align: center"  src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="200" width="1280">
-       </div>
+      /* Sticky footer styles
+      -------------------------------------------------- */
 
-      <div class="navbar">
-          <div class="navbar-inner">
-              <ul class="nav">
-                  <li> <a href="/pointtracker">Home</a></li>
-                  <li class="active"><a href="/FAQ">FAQ</a></li>
-##                  <li><a href="/sign_out">Sign Out</a></li>
-              </ul>
-           </div>
-      </div>
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
 
-      <div style="text-align: left">
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      .container {
+        width: auto;
+        max-width: 960px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+    </style>
+
+
+
+
+
+
+
+
+
+
+     <div id="wrap">
+     <!-- Begin page content -->
+         <div class="container">
+            <div>
+                <img style="text-align: center"  src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="200" width="1280">
+            </div>
+            <div class="navbar">
+              <div class="navbar-inner">
+                  <ul class="nav">
+                      <li> <a href="/pointtracker">Home</a></li>
+                      <li class="active"><a href="/FAQ">FAQ</a></li>
+                  </ul>
+               </div>
+            </div>
+
+##      <div style="text-align: left">
           <h3><b>How many Reward Programs do you support?</b></h3>
           <p>PointTracker currently supports six Reward Programs.<br>
             <li>American Airlines</li>
@@ -56,8 +117,8 @@
           </span>
           <br>
           <h3><b>Are my Reward Program passwords safe?</b></h3>
-          <span>All Reward Program passwords are stored on the PointTracker serve in AES 256 bit Encryption.  Your PointTracker password is not stored anywhere on our servers.
-          All information is set to our servers over HTTPS.</span>
+          <span>All Reward Program passwords are stored on the PointTracker server in AES 256 bit Encryption.  Your PointTracker password is not stored anywhere on our servers.
+          All information is sent to our servers over HTTPS.</span>
           <br>
           <h3><b>What type of encryption is used?</b></h3>
           <span>Reward Program passwords are encrypted with AES 256 encryption</span>
@@ -77,16 +138,15 @@
           <br>
           <h3><b>Why did I see a warning when I came to the PointTracker website?  Is it safe?</b></h3>
           <span>Yes it is safe.  The warning is posted because currently PointTracker is hosted by a web server that does not support custom https certificates.
-          They just offer a general https certificate that covers everybody.
-          The web host will be adding https custom certificates in summer 2013</span>
+          They just offer a general https certificate that covers everybody thus resulting in the warning.
+          The web host will be adding https custom certificates in summer 2013.  Once implemented the 'trusted site' warning will go away.</span>
           <br>
-      </div>
-
-
-          <br>
-          <br>
-          <br>
-          <br>
+##      </div>
+##             </div>
+##         </div>
+     </div>
+     <div id="push"></div>
+     </div>
 
 
 

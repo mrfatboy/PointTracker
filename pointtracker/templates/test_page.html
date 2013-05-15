@@ -19,6 +19,63 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+
+
+<style>
+##  html {
+##  background: black;
+##  }
+
+
+## html {
+##    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(99, 130, 169, 0.7))), url('/static/graphics/pointtracker_header.png'); /* Chrome,Safari4+ */
+##    background-image: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.16)), url('/static/graphics/pointtracker_header.png'); /* Chrome10+,Safari5.1+ */
+##    background-image: -moz-linear-gradient(top, transparent, rgba(99,130,169,.7)), url('/static/graphics/pointtracker_header.png'); /* FF3.6+ */
+##    background-image: -ms-linear-gradient(top, transparent, rgba(99,130,169,.7)), url('/static/graphics/pointtracker_header.png'); /* IE10+ */
+##    background-image: -o-linear-gradient(top, transparent, rgba(99,130,169,.7)), url('/static/graphics/pointtracker_header.png'); /* Opera 11.10+ */
+####    background-image: linear-gradient(to bottom, transparent, rgba(99,130,169,0.7)), url('/static/graphics/pointtracker_header.png'); /* W3C */
+##    background-image: linear-gradient(to bottom, transparent, #FFF ,#DFF3FC ), url('/static/graphics/pointtracker_header.png'); /* W3C */
+##
+##    background-repeat: no-repeat;
+####    background-position: 50% 50%;
+##    background-attachment: fixed;
+##
+##    min-height: 100%;
+##}
+
+
+
+
+    html {
+
+  height: 1200px;
+  background-image: -moz-linear-gradient(top, #FFF,#1984FF );
+  background-image: -ms-linear-gradient(top, #FFF, #1984FF);
+  background-image: -webkit-linear-gradient(top, #1984FF, #DFF3FC);
+##  background-image: -webkit-linear-gradient(top, #FFF, #DFF3FC);
+##  background-image: -webkit-linear-gradient(top, #FFF, #1984FF);
+  background-image: -o-linear-gradient(top, #FFF,#1984FF );
+  background-image: linear-gradient(top, #FFF, #1984FF );
+  margin: 0 0 10px 0;
+    background-repeat: no-repeat;
+##    background-position: 50% 50%;
+    background-attachment: fixed;
+
+    min-height: 100%;
+}
+
+
+  </style>
+
+
+
+
+
+
+
+
+
+
   </head>
 
 
@@ -28,52 +85,185 @@
 ##          body { background: #DFF3FC; }
 ##      </style>
 
-<style type="text/css">
-  #welcome .gray-fade {
-  height: 50px;
-  background-image: -moz-linear-gradient(top, #EAEAEA, #FFF);
-  background-image: -ms-linear-gradient(top, #EAEAEA, #FFF);
-  background-image: -webkit-linear-gradient(top, #EAEAEA, #FFF);
-  background-image: -o-linear-gradient(top, #EAEAEA, #FFF);
-  background-image: linear-gradient(top, #EAEAEA, #FFF);
-  margin: 0 0 10px 0;
-}
-
-
-</style>
-
-
-
-
-       <div>
-            <img style="text-align: center"  src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="200" width="1280">
-       </div>
-
-      <div class="navbar">
-          <div class="navbar-inner">
-              <ul class="nav">
-                  <li class="active"><a href="/pointtracker">Home</a></li>
-                  <li><a href="/FAQ">FAQ</a></li>
-                  <li><a href="/test_page">Test Page</a></li>
-              </ul>
-           </div>
-      </div>
+##<style type="text/css">
+##  #welcome .gray-fade {
+##  height: 50px;
+##  background-image: -moz-linear-gradient(top, #EAEAEA, #FFF);
+##  background-image: -ms-linear-gradient(top, #EAEAEA, #FFF);
+##  background-image: -webkit-linear-gradient(top, #EAEAEA, #FFF);
+##  background-image: -o-linear-gradient(top, #EAEAEA, #FFF);
+##  background-image: linear-gradient(top, #EAEAEA, #FFF);
+##  margin: 0 0 10px 0;
+##}
+##
+##
+##</style>
 
 
 
-  <div class="row"><div class="gray-fade"></div></div>
+ <style type="text/css">
 
-  <div class="row">
-    <div class="span12">
-      <h2>My Header</h2>
-    </div>
-  </div>
+      /* Sticky footer styles
+      -------------------------------------------------- */
 
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      .container {
+        width: auto;
+        max-width: 960px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+    </style>
+
+
+
+ <div id="wrap">
+     <!-- Begin page content -->
+     <div class="container">
+         <div>
+             <img style="text-align: center"  src="/static/graphics/pointtracker_header.png" alt="airplane logo" height="200" width="1280">
+         </div>
+         <div class="navbar">
+             <div class="navbar-inner">
+                 <ul class="nav">
+                     <li><a href="/pointtracker">Home</a></li>
+                     <li><a href="/FAQ">FAQ</a></li>
+                     <li class="active"><a href="/test_page">Test Page</a></li>
+
+             </div>
+
+          <h3><b>How many Reward Programs do you support?</b></h3>
+          <p>PointTracker currently supports six Reward Programs.<br>
+            <li>American Airlines</li>
+            <li>United Airlines</li>
+            <li>Delta Airlines</li>
+            <li>US Airways</li>
+            <li>British Airways</li>
+            <li>EVA Air</li>
+          <h3><b>Can I create multiple sub accounts in my main PointTracker account?</b></h3>
+          <span>Yes!  You can add as many sub accounts as would like. For instance, you create a sub account for each member of your family.
+          </span>
+          <br>
+          <h3><b>Are my Reward Program passwords safe?</b></h3>
+          <span>All Reward Program passwords are stored on the PointTracker server in AES 256 bit Encryption.  Your PointTracker password is not stored anywhere on our servers.
+          All information is sent to our servers over HTTPS.</span>
+          <br>
+          <h3><b>What type of encryption is used?</b></h3>
+          <span>Reward Program passwords are encrypted with AES 256 encryption</span>
+          <br>
+          <h3><b>What information is stored on the PointTracker server?</b></h3>
+          <span>Besides the general information of each Reward Program you register (Account name, Account Number, Points, etc),
+          your name, Reward Program usernames and Reward Program passwords are stored on the server.
+          Reward Program passwords are encrypted with AES 256 encryption</span>
+          <br>
+          <h3><b>I forgot my Username and/or Password, how can I retrieve them?</b></h3>
+          <span>Unfortunately you can not retrieve any login information from you PointTracker account.  This is because we do not store that information in our database.
+          The benefit is added security for your information.  The side effect is that you must remember your login information.  Please make a new PointTracker account.</span>
+          <br>
+          <h3><b>Can the PointTracker admin see my Reward Program passwords?</b></h3>
+          <span>No.  PointTracker encrypts your Reward Programs and uses your PointTracker password as the key. We don't store you PointTracker password so we are unable decrypt any information.
+          The benefit is added security for your information.  The side effect is that you must remember your login information.</span>
+          <br>
+          <h3><b>Why did I see a warning when I came to the PointTracker website?  Is it safe?</b></h3>
+          <span>Yes it is safe.  The warning is posted because currently PointTracker is hosted by a web server that does not support custom https certificates.
+          They just offer a general https certificate that covers everybody thus resulting in the warning.
+          The web host will be adding https custom certificates in summer 2013.  Once implemented the 'trusted site' warning will go away.</span
+
+                 </ul>
+             </div>
+         </div>
+     </div>
+     <div id="push"></div>
+ </div>
+
+
+
+
+##  <a href="http://openshift.com" class="brand">
+##    <img class="brand-image"
+##      alt="OpenShift logo"
+##      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYAAABU1PscAAAAAXNSR0IArs4c6QAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAARHgAAER4B27UUrQAABUhJREFUWMPFWFlsVGUU/s5/70zbaSltA7RQpJ2lC9CFkQkWIgSJxkAhRA0JCYFq4hPG6JsoGKNCtPigxqhvGlPAuGIaE4igNaElbIW2yNL2tkOtTYGWCqWF2e79fCh7p1Bmpnge/3vuOef7z/nPJiTxMHS6pMRuu6YqFNTTAJYSyAU4GZB0AH2AGCANAfc5Qrba6T3HrmECScYLwCioSIcV2AjidQDZ45Q/LJRaWrLV03X89P8GwHB5XwG4DcDkGPWEBKimNrzN094efGQAzjm9GWHFr4R4LiHKgFaSL3r8zYcmHEBbkW+KFo7UEyhKsNeHlMgyV8eJo4kQpqId9ub6HCoc+XWcxl8lcBTATwDax8GfZtHa054/f/bNg8ZcnyOhHjBc834E8MJ9/vML8aYZQX1hd1PP3WFXkhMRfYkIlpOoGomc0WRRTnch+XAQWG2KTNJNLbuy68C/cQMwXOWrAKkdgz8A8kMdg9X5fn/gQcI7POXLaMk3AGbe/P8SbF0D1KcGRGXpIJJpIQkWBHhnsf/Ie3GF0DmnMxmQT8bg7RellXr8ze+Ox3gAcBvNf+iUUhH5FODLSvScAerDGpiVxTAyGUYKzICA34nCwbhDyHB7N4L8PAofhVzh9jfvjffR/ZZTnupIsR8G0C9EjW7Tfnii/dBgrPL0u83kmjHy33Z3Z/zG97uKi7xpWA8GHZpE1mcZRne8MvXblfbxqQAWR+Fp+mdW5hZPjAqu5JVlhrTwOgrXi2ABbjjchF4FYGvi0qhprgagjYod4OeldXWRWBUEtdBjEH4mwIJ7vF2V4Dqgot0+NEFdPAqmdZ5tAXA8Slx6LrpKsxMHQJge5ft1v0oe2OOu+PZ39+LCOFqImqiXo8JzAeBkXlnmnoKK9LgACJl2R9gELsHW1saUwKCpnbIoa8UMTokVgGXJmSjHkfNWUlWDy9d6USVdyoiEF8b1iElxQKHuPG1D/bCtVEBhCiykMQQFgCK2mN2sSx+tkdcbhGq7wKSkK9RnmsCG2xVSLsflAR1S6eloWhawtF8yGJGskSJDBdQR8pIjZMXcfFmm1gOg2lRaSRdT1AD1PBPQbCAyxcRMifCpc41HEtILNbh9s8SSvYTUmBp2LDGOdCOB1OD0XbeByWliwY5bugc9nU2T4wqhCx7PNAV9bSGwARp3TzVaP0j09GQUzJubLUgefY3SEHMh63MVr4FIlYL+7C1AlCwAmxM+/plYy6hhgN2xp1HBawAr72krnH3uoicTaXyHx7uIwKZoT0QhUhszAAI7x7ivL0a60/jp77yyTFrWt6N6rxE99c7OkxdiBhC2y/cAorXHpama/aNG8dkOO32b6p3zTzXmeysfPu4LkkKafA3IrGjfCfPtuGfiPlfx+xBsuWtwpa3zIuy2YaoZ5o0eSQc5TVnb53aeeAuk9eBtRvkqUH0MoTsqA7nL429eFzeA3lyfQ08eaiNgCrjTYNozQ1S+WyUfQCosTLqZ+oiDUNwhggPujpZTuCMXGwUV6cJgKYnNIJffR3df2NLLZ5871puQrUR//pzpU7rOnAfJP53eDELrsoPpk4RIGRn5xqIBAAdBOCAoBjBjPJsJUdZSt9HSOGFrld5cn2M4KbwfkIUJzqYhQlYWdJ7YN2FrFQCY3nPsmk61AuSuRNYyUdaiRBk/7tViR37Zcir1JYC8WNshgjWWPfhq0dmzVx/5bhQAWnLKU1Md8gZHOsjxAgmD2GEKq4s6m1sxASQPu16HiBh53goqPg9ac0TEcwNQEOBlQAZEcMgC94dDZt2c7r8GMIH0H43ZRDC51RVCAAAAAElFTkSuQmCC">
+##    <div class="brand-text"><strong>Open</strong>Shift</div>
+##  </a>
+##  <h1>
+##    Welcome to Python-3.3 running on OpenShift
+##  </h1>
+##  <p>
+##    This is a sample WSGI application running on Python 3.3
+##  </p>
+##  <p>
+##    In order to commit to your new project, go to your projects git repo (created with the rhc app create command).  Make your changes, then run:
+##  </p>
+##  <pre>
+##    git commit -a -m 'Some commit message'
+##    git push
+##  </pre>
+##  <p>
+##    Then reload this page.
+##  </p>
+##
+##  <h2>
+##    What's next?
+##  </h2>
+##  <ul>
+##    <li>
+##      Why not visit us at <a href="http://openshift.redhat.com">http://openshift.redhat.com</a>, or
+##    </li>
+##    <li>
+##      You could get help in the <a href="http://www.redhat.com/openshift">OpenShift forums</a>, or
+##    </li>
+##    <li>
+##      You're welcome to come chat with us in our IRC channel at #openshift on freenode.net
+##    </li>
+##  </ul>
 
 
 
   <!-- Footer
   ================================================== -->
+
+
     <footer class="footer">
       <div class="container" style="text-align: center">
         <p>Copyright 2013 PointTracker LLC</p>
